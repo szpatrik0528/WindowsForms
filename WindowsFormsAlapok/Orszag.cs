@@ -24,7 +24,7 @@ namespace WindowsFormsAlapok
 
         public override string ToString() 
         {
-            return $"{orszagNev}, területe: {terulet.ToString("#,##0.0")}";
+            return $"{orszagNev}, területe: {terulet.ToString("#,##0")}";
         }
     }
 }

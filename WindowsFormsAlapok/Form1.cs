@@ -26,14 +26,19 @@ namespace WindowsFormsAlapok
 
         private void Adatbetoltes()
         {
-            openFileDialog1.Filter = "vesszővel tagolt csv |*.csv| txt file (*.txt) All files (*.*) | *.*";
-            openFileDialog1.FilterIndex = 0;
-            openFileDialog1.Title = "Adatfálj neve";
-            openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
-            openFileDialog1.FileName = "orszagok.csv";
-            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Vesszővel tagolt CSV |*.csv|Szöveges fájl (*.txt)|*.txt|Összes fájl (*.*)|*.*";
+            openFileDialog.FilterIndex = 0;
+            openFileDialog.Title = "Adatfájl neve";
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.FileName = "orszagok.csv";
+
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                using (StreamReader sr = new StreamReader(openFileDialog1.FileName))
+                // Beállítjuk a betöltött fájl nevét a textBox_forrasfaljneve-be
+                textBox_forrasfaljneve.Text = Path.GetFileName(openFileDialog.FileName);
+
+                using (StreamReader sr = new StreamReader(openFileDialog.FileName))
                 {
                     sr.ReadLine();
                     while (!sr.EndOfStream)
@@ -51,52 +56,89 @@ namespace WindowsFormsAlapok
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox_miminumvagymaximum.SelectedIndex = 0;
+            
         }
         
 
         private void button_betoltes_Click(object sender, EventArgs e)
         {
             Adatbetoltes();
-        }
+        }   
 
         private void button_kiiras_Click(object sender, EventArgs e)
-        {
+{
             FileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Valami szöveg a felhasználónak|*.txt";
+            saveFileDialog.Filter = "Szöveges fájl|*.txt";
             saveFileDialog.InitialDirectory = Environment.CurrentDirectory;
             saveFileDialog.FileName = "eredmeny.txt";
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string eredmenyFajl = saveFileDialog.FileName;
                 textBox_eredemnyfaljneve.Text = Path.GetFileName(eredmenyFajl);
-                try
-                {
-                    using (StreamWriter sw = new StreamWriter(eredmenyFajl))
-                    {
-                        sw.WriteLine("Ez az eredmény!");
-                    }
-                }
-                catch (IOException ex)
-                {
-                    MessageBox.Show("Valami nem ok!"+Environment.NewLine+ex.Message);
 
-                    throw;
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(eredmenyFajl))
+            {
+                if (radioButton_legfeljebb.Checked)
+                {
+                    // A "legfeljebb" lekérdezés eredménye
+                    int db = 0;
+                    foreach (Orszag orszag in listBox_Orszagoklista.Items)
+                    {
+                        if (orszag.Terulet <= 100000)
+                        {
+                            sw.WriteLine($"{orszag.OrszagNev}: {orszag.Terulet} km²");
+                            db++;
+                        }
+                    }
+                    sw.WriteLine($"Összesen {db} ország van, amelynek területe legfeljebb 100.000 km².");
+                }
+                else
+                {
+                    // A "nagyobb" lekérdezés eredménye
+                    int db = 0;
+                    foreach (Orszag orszag in listBox_Orszagoklista.Items)
+                    {
+                        if (orszag.Terulet > 100000)
+                        {
+                            sw.WriteLine($"{orszag.OrszagNev}: {orszag.Terulet} km²");
+                            db++;
+                        }
+                    }
+                    sw.WriteLine($"Összesen {db} ország van, amelynek területe nagyobb mint 100.000 km².");
                 }
             }
+
+            MessageBox.Show("Az eredmények sikeresen mentve lettek.", "Mentés", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        catch (IOException ex)
+        {
+            MessageBox.Show("Hiba történt a fájl mentése során." + Environment.NewLine + ex.Message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+}
+
+
 
         private void button_megszamolas_Click(object sender, EventArgs e)
         {
-            if (radioButton_legfeljebb.Checked)
+            if (listBox_Orszagoklista.SelectedItem != null)
             {
-                SzamollegfeljebbSzazezer();
+                Orszag kivalasztottOrszag = (Orszag)listBox_Orszagoklista.SelectedItem;
+                bool nagyobbTerulet = kivalasztottOrszag.Terulet > 100000;
+
+                MessageBox.Show($"{kivalasztottOrszag.OrszagNev} {(nagyobbTerulet ? "nagyobb" : "legfeljebb")} 100.000 területű.",
+                                nagyobbTerulet ? "Nagyobb terület" : "Legfeljebb 100.000 terület",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                SzamolSzazezerFelett();
+                MessageBox.Show("Nincs kijelölt ország.", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void SzamolSzazezerFelett()
         {
@@ -127,27 +169,54 @@ namespace WindowsFormsAlapok
         private void button_maximumvagyminimum_Click(object sender, EventArgs e)
         {
             //--Listboxban vagy a legnagyobb vagy a legkisebb területű országot válassza ki
-            
-            if (comboBox_miminumvagymaximum.SelectedIndex==0)
+
+            if (comboBox_miminumvagymaximum.SelectedIndex == 0)
             {
                 Orszag keresettOrszag = null;
                 double keresettErtek = ((Orszag)listBox_Orszagoklista.Items[0]).Terulet;
-                foreach (Orszag item in listBox_Orszagoklista.Items)
+                int keresettIndex = 0;
+
+                for (int i = 0; i < listBox_Orszagoklista.Items.Count; i++)
                 {
-                    if(keresettErtek > item.Terulet)
+                    Orszag item = (Orszag)listBox_Orszagoklista.Items[i];
+
+                    if (keresettErtek > item.Terulet)
                     {
                         keresettErtek = item.Terulet;
                         keresettOrszag = item;
+                        keresettIndex = i;
                     }
                 }
-                MessageBox.Show($"Minimum {keresettOrszag.OrszagNev} teruülete: {keresettOrszag.Terulet}");
+
+                MessageBox.Show($"Minimum {keresettOrszag.OrszagNev} területe: {keresettOrszag.Terulet}");
+
+                // Jelöld ki a keresett országot a listBox-ban
+                listBox_Orszagoklista.SelectedIndex = keresettIndex;
             }
             else
             {
-                foreach (Orszag item in listBox_Orszagoklista.Items)
+                Orszag keresettOrszag = null;
+                double keresettErtek = ((Orszag)listBox_Orszagoklista.Items[0]).Terulet;
+                int keresettIndex = 0;
+
+                for (int i = 0; i < listBox_Orszagoklista.Items.Count; i++)
                 {
+                    Orszag item = (Orszag)listBox_Orszagoklista.Items[i];
+
+                    if (keresettErtek < item.Terulet)
+                    {
+                        keresettErtek = item.Terulet;
+                        keresettOrszag = item;
+                        keresettIndex = i;
+                    }
                 }
+
+                MessageBox.Show($"Maximum {keresettOrszag.OrszagNev} területe: {keresettOrszag.Terulet}");
+
+                // Jelöld ki a keresett országot a listBox-ban
+                listBox_Orszagoklista.SelectedIndex = keresettIndex;
             }
+
         }
 
         private void radioButton_legfeljebb_CheckedChanged(object sender, EventArgs e)
@@ -172,7 +241,7 @@ namespace WindowsFormsAlapok
 
         private void textBox_forrasfaljneve_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button_teruletatlag_Click(object sender, EventArgs e)
@@ -200,12 +269,31 @@ namespace WindowsFormsAlapok
 
         private void button_kereses_Click(object sender, EventArgs e)
         {
-            string keresiazorszagot = listBox_Orszagoklista.Text.ToLower();
+            // Az input szöveget kisbetűsre alakítjuk a pontos egyezés érdekében
+            string keresiazorszagot = textBox_orszagokkeresese.Text.ToLower();
+
+            // Keresés a listBox-ban
+            for (int i = 0; i < listBox_Orszagoklista.Items.Count; i++)
+            {
+                Orszag orszag = (Orszag)listBox_Orszagoklista.Items[i];
+
+                // Az ország nevét kisbetűsre alakítjuk a kisbetű-nagybetű különbség figyelmen kívül hagyása érdekében
+                if (orszag.OrszagNev.ToLower() == keresiazorszagot)
+                {
+                    // Megtaláltuk az országot, jelöljük ki, és kilépünk a ciklusból
+                    listBox_Orszagoklista.SelectedIndex = i;
+                    return;
+                }
+            }
+
+            // Ha az ország nem található, kiírhatunk egy üzenetet vagy kezelhetjük másképp a helyzetet
+            MessageBox.Show("Az adott ország nem található a listában.");
         }
 
         private void textBox_orszagokkeresese_TextChanged(object sender, EventArgs e)
         {
-
+            // Itt akár további keresési funkciókat is hozzáadhatnál, ha szükséges
         }
+
     }
 }

@@ -1,0 +1,10 @@
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\bin\Debug\WindowsFormsAlapok.exe.config
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\bin\Debug\WindowsFormsAlapok.exe
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\bin\Debug\WindowsFormsAlapok.pdb
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.csproj.AssemblyReference.cache
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.Form1.resources
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.Properties.Resources.resources
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.csproj.GenerateResource.cache
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.csproj.CoreCompileInputs.cache
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.exe
+C:\Users\szivospatrik\source\repos\WindowsForms\WindowsFormsAlapok\obj\Debug\WindowsFormsAlapok.pdb
