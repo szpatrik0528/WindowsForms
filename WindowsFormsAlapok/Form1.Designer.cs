@@ -34,7 +34,6 @@
             this.button_betoltes = new System.Windows.Forms.Button();
             this.textBox_orszagokkeresese = new System.Windows.Forms.TextBox();
             this.textBox_eredemnyfaljneve = new System.Windows.Forms.TextBox();
-            this.button_teruletatlaga = new System.Windows.Forms.Button();
             this.button_megszamolas = new System.Windows.Forms.Button();
             this.button_kiiras = new System.Windows.Forms.Button();
             this.button_kereses = new System.Windows.Forms.Button();
@@ -50,6 +49,7 @@
             this.checkBox_talaltokkijelolese = new System.Windows.Forms.CheckBox();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button_teruletatlag = new System.Windows.Forms.Button();
             this.groupBox_mitszamoljunk.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,7 @@
             this.label_forrasfaljneve.AutoSize = true;
             this.label_forrasfaljneve.Location = new System.Drawing.Point(17, 20);
             this.label_forrasfaljneve.Name = "label_forrasfaljneve";
+            this.helpProvider1.SetShowHelp(this.label_forrasfaljneve, false);
             this.label_forrasfaljneve.Size = new System.Drawing.Size(79, 13);
             this.label_forrasfaljneve.TabIndex = 0;
             this.label_forrasfaljneve.Text = "Forrásfájl neve:";
@@ -66,6 +67,7 @@
             // 
             this.textBox_forrasfaljneve.Location = new System.Drawing.Point(20, 36);
             this.textBox_forrasfaljneve.Name = "textBox_forrasfaljneve";
+            this.helpProvider1.SetShowHelp(this.textBox_forrasfaljneve, true);
             this.textBox_forrasfaljneve.Size = new System.Drawing.Size(189, 20);
             this.textBox_forrasfaljneve.TabIndex = 1;
             this.textBox_forrasfaljneve.TextChanged += new System.EventHandler(this.textBox_forrasfaljneve_TextChanged);
@@ -87,6 +89,7 @@
             this.textBox_orszagokkeresese.Name = "textBox_orszagokkeresese";
             this.textBox_orszagokkeresese.Size = new System.Drawing.Size(189, 20);
             this.textBox_orszagokkeresese.TabIndex = 4;
+            this.textBox_orszagokkeresese.TextChanged += new System.EventHandler(this.textBox_orszagokkeresese_TextChanged);
             // 
             // textBox_eredemnyfaljneve
             // 
@@ -95,17 +98,6 @@
             this.textBox_eredemnyfaljneve.Size = new System.Drawing.Size(189, 20);
             this.textBox_eredemnyfaljneve.TabIndex = 5;
             this.textBox_eredemnyfaljneve.TextChanged += new System.EventHandler(this.textBox_eredemnyfaljneve_TextChanged);
-            // 
-            // button_teruletatlaga
-            // 
-            this.button_teruletatlaga.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button_teruletatlaga.Location = new System.Drawing.Point(20, 378);
-            this.button_teruletatlaga.Name = "button_teruletatlaga";
-            this.button_teruletatlaga.Size = new System.Drawing.Size(189, 23);
-            this.button_teruletatlaga.TabIndex = 6;
-            this.button_teruletatlaga.Text = "Területek átlaga";
-            this.button_teruletatlaga.UseVisualStyleBackColor = false;
-            this.button_teruletatlaga.Click += new System.EventHandler(this.Form1_Load);
             // 
             // button_megszamolas
             // 
@@ -121,7 +113,7 @@
             // button_kiiras
             // 
             this.button_kiiras.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button_kiiras.Location = new System.Drawing.Point(244, 203);
+            this.button_kiiras.Location = new System.Drawing.Point(245, 197);
             this.button_kiiras.Name = "button_kiiras";
             this.button_kiiras.Size = new System.Drawing.Size(188, 23);
             this.button_kiiras.TabIndex = 9;
@@ -250,12 +242,24 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button_teruletatlag
+            // 
+            this.button_teruletatlag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button_teruletatlag.Location = new System.Drawing.Point(20, 379);
+            this.button_teruletatlag.Name = "button_teruletatlag";
+            this.button_teruletatlag.Size = new System.Drawing.Size(189, 23);
+            this.button_teruletatlag.TabIndex = 19;
+            this.button_teruletatlag.Text = "Terület átlag";
+            this.button_teruletatlag.UseVisualStyleBackColor = false;
+            this.button_teruletatlag.Click += new System.EventHandler(this.button_teruletatlag_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(458, 450);
+            this.Controls.Add(this.button_teruletatlag);
             this.Controls.Add(this.checkBox_talaltokkijelolese);
             this.Controls.Add(this.label_orszagokkeresese);
             this.Controls.Add(this.label_minimumvagymaximum);
@@ -267,7 +271,6 @@
             this.Controls.Add(this.button_kereses);
             this.Controls.Add(this.button_kiiras);
             this.Controls.Add(this.button_megszamolas);
-            this.Controls.Add(this.button_teruletatlaga);
             this.Controls.Add(this.textBox_eredemnyfaljneve);
             this.Controls.Add(this.textBox_orszagokkeresese);
             this.Controls.Add(this.button_betoltes);
@@ -294,7 +297,6 @@
         private System.Windows.Forms.Button button_betoltes;
         private System.Windows.Forms.TextBox textBox_orszagokkeresese;
         private System.Windows.Forms.TextBox textBox_eredemnyfaljneve;
-        private System.Windows.Forms.Button button_teruletatlaga;
         private System.Windows.Forms.Button button_megszamolas;
         private System.Windows.Forms.Button button_kiiras;
         private System.Windows.Forms.Button button_kereses;
@@ -310,6 +312,7 @@
         private System.Windows.Forms.CheckBox checkBox_talaltokkijelolese;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button_teruletatlag;
     }
 }
 
