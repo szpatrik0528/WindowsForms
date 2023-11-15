@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAsync", "SyncAsync\Sync
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAlapok", "WindowsFormsAlapok\WindowsFormsAlapok.csproj", "{3DF86068-2BF3-465A-966F-4131AB96401B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza winForm", "Pizza winForm\Pizza winForm.csproj", "{05017078-4634-4290-9131-5BC134C1F30F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{3DF86068-2BF3-465A-966F-4131AB96401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DF86068-2BF3-465A-966F-4131AB96401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DF86068-2BF3-465A-966F-4131AB96401B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05017078-4634-4290-9131-5BC134C1F30F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05017078-4634-4290-9131-5BC134C1F30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05017078-4634-4290-9131-5BC134C1F30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05017078-4634-4290-9131-5BC134C1F30F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
