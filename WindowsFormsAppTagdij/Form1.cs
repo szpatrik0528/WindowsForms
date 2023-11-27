@@ -84,7 +84,32 @@ namespace WindowsFormsAppTagdij
 
         private void button_update_Click(object sender, EventArgs e)
         {
+            if (listBox_tagok.SelectedIndex < 0)
+            {
+                MessageBox.Show("Nincs kiválasztott Tag!");
+                return;
+            }
 
+            if (string.IsNullOrEmpty(textBox_nev.Text) || string.IsNullOrEmpty(textBox_orsz.Text))
+            {
+                MessageBox.Show("Minden mezőt ki kell tölteni!");
+                return;
+            }
+
+            Tag kivalasztottTag = (Tag)listBox_tagok.SelectedItem;
+
+            // Frissítsd az adatokat a kiválasztott Tag objektumban
+            kivalasztottTag.nev = textBox_nev.Text;
+            kivalasztottTag.orsz = textBox_orsz.Text;
+            kivalasztottTag.irszam = (int)numericUpDown_irszam.Value;
+            kivalasztottTag.szulev = (int)numericUpDown_szulev.Value;
+
+            listBox_tagok.Items[listBox_tagok.SelectedIndex] = kivalasztottTag;
+            textBox_azon.Text = "";
+            textBox_nev.Text = "";
+            textBox_orsz.Text = "";
+            numericUpDown_irszam.Value = numericUpDown_irszam.Minimum;
+            numericUpDown_szulev.Value = numericUpDown_szulev.Minimum;
         }
 
         private void button_insert_Click(object sender, EventArgs e)
@@ -108,7 +133,7 @@ namespace WindowsFormsAppTagdij
             try
             {
                 if (connection.State != ConnectionState.Open)
-                { 
+                {
                     connection.Open();
                 }
                 command.ExecuteNonQuery();
@@ -129,6 +154,21 @@ namespace WindowsFormsAppTagdij
 
         private void button_delete_Click(object sender, EventArgs e)
         {
+            if (listBox_tagok.SelectedIndex < 0)
+            {
+                MessageBox.Show("Nincs kiválasztott Tag!");
+                return;
+            }
+
+            Tag kivalasztottTag = (Tag)listBox_tagok.SelectedItem;
+
+            // Töröld az adott Tag-ot a listából
+            listBox_tagok.Items.Remove(kivalasztottTag);
+            textBox_azon.Text = "";
+            textBox_nev.Text = "";
+            textBox_orsz.Text = "";
+            numericUpDown_irszam.Value = numericUpDown_irszam.Minimum;
+            numericUpDown_szulev.Value = numericUpDown_szulev.Minimum;
 
         }
     }
