@@ -1,0 +1,3 @@
+Adatbázis kapcsolat:
+	- Megkeressük a szolgáltató kiegészítőjét. 
+	-

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAlapok", "Windo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza winForm", "Pizza winForm\Pizza winForm.csproj", "{05017078-4634-4290-9131-5BC134C1F30F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppTagdij", "WindowsFormsAppTagdij\WindowsFormsAppTagdij.csproj", "{F9689FF9-6F94-4DF7-B089-4DCAB1981C5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{05017078-4634-4290-9131-5BC134C1F30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05017078-4634-4290-9131-5BC134C1F30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05017078-4634-4290-9131-5BC134C1F30F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9689FF9-6F94-4DF7-B089-4DCAB1981C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9689FF9-6F94-4DF7-B089-4DCAB1981C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9689FF9-6F94-4DF7-B089-4DCAB1981C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9689FF9-6F94-4DF7-B089-4DCAB1981C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
