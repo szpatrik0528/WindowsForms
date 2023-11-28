@@ -32,6 +32,8 @@ namespace WindowsFormsAppLogin
                 {
                     Program.formVasarlas.Show();
                     this.Hide();
+                    Program.connection.Close();
+                    reader.Close();
                 }
                 else
                 {

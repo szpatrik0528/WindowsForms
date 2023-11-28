@@ -38,12 +38,12 @@ namespace WindowsFormsAppLogin
             listBox_termek.Items.Clear();
             try
             {
-                if (connection.State != ConnectionState.Open)
+                if (Program.connection.State != ConnectionState.Open)
                 {
-                    connection.Open();
+                    Program.connection.Open();
                 }
-                command.CommandText = "SELECT `termekid`, `termeknev`, `ar`, `db` FROM `termek` WHERE 1 ORDER BY termeknev";
-                using (MySqlDataReader dr = command.ExecuteReader())
+                Program.command.CommandText = "SELECT `termekid`, `termeknev`, `ar`, `db` FROM `termek` WHERE 1 ORDER BY termeknev";
+                using (MySqlDataReader dr = Program.command.ExecuteReader())
                 {
                     while (dr.Read())
                     {
@@ -54,7 +54,7 @@ namespace WindowsFormsAppLogin
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "bunko");
                 Environment.Exit(0);
             }
         }
