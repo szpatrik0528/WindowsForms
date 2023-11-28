@@ -57,7 +57,7 @@
             this.listBox_tagok.BackColor = System.Drawing.Color.DarkGray;
             this.listBox_tagok.Dock = System.Windows.Forms.DockStyle.Left;
             this.listBox_tagok.FormattingEnabled = true;
-            this.listBox_tagok.ItemHeight = 37;
+            this.listBox_tagok.ItemHeight = 20;
             this.listBox_tagok.Location = new System.Drawing.Point(0, 0);
             this.listBox_tagok.Name = "listBox_tagok";
             this.listBox_tagok.Size = new System.Drawing.Size(253, 801);
@@ -136,7 +136,7 @@
             // 
             this.textBox_orsz.Location = new System.Drawing.Point(15, 372);
             this.textBox_orsz.Name = "textBox_orsz";
-            this.textBox_orsz.Size = new System.Drawing.Size(100, 44);
+            this.textBox_orsz.Size = new System.Drawing.Size(100, 26);
             this.textBox_orsz.TabIndex = 10;
             // 
             // label6
@@ -144,7 +144,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(11, 339);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(173, 37);
+            this.label6.Size = new System.Drawing.Size(86, 20);
             this.label6.TabIndex = 9;
             this.label6.Text = "Országkód";
             // 
@@ -162,7 +162,7 @@
             0,
             0});
             this.numericUpDown_szulev.Name = "numericUpDown_szulev";
-            this.numericUpDown_szulev.Size = new System.Drawing.Size(120, 44);
+            this.numericUpDown_szulev.Size = new System.Drawing.Size(120, 26);
             this.numericUpDown_szulev.TabIndex = 8;
             this.numericUpDown_szulev.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown_szulev.Value = new decimal(new int[] {
@@ -176,7 +176,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(11, 258);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(186, 37);
+            this.label5.Size = new System.Drawing.Size(94, 20);
             this.label5.TabIndex = 7;
             this.label5.Text = "Születési év";
             // 
@@ -185,7 +185,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 258);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 37);
+            this.label4.Size = new System.Drawing.Size(0, 20);
             this.label4.TabIndex = 6;
             // 
             // numericUpDown_irszam
@@ -207,7 +207,7 @@
             0,
             0});
             this.numericUpDown_irszam.Name = "numericUpDown_irszam";
-            this.numericUpDown_irszam.Size = new System.Drawing.Size(120, 44);
+            this.numericUpDown_irszam.Size = new System.Drawing.Size(120, 26);
             this.numericUpDown_irszam.TabIndex = 5;
             this.numericUpDown_irszam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown_irszam.Value = new decimal(new int[] {
@@ -221,15 +221,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 180);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(198, 37);
+            this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Irányítószám";
             // 
             // textBox_nev
             // 
+            this.textBox_nev.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.textBox_nev.Location = new System.Drawing.Point(11, 136);
             this.textBox_nev.Name = "textBox_nev";
-            this.textBox_nev.Size = new System.Drawing.Size(277, 44);
+            this.textBox_nev.Size = new System.Drawing.Size(277, 26);
             this.textBox_nev.TabIndex = 3;
             // 
             // label2
@@ -237,7 +238,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 37);
+            this.label2.Size = new System.Drawing.Size(36, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Név";
             // 
@@ -246,7 +247,7 @@
             this.textBox_azon.Location = new System.Drawing.Point(11, 59);
             this.textBox_azon.Name = "textBox_azon";
             this.textBox_azon.ReadOnly = true;
-            this.textBox_azon.Size = new System.Drawing.Size(100, 44);
+            this.textBox_azon.Size = new System.Drawing.Size(100, 26);
             this.textBox_azon.TabIndex = 1;
             // 
             // label1
@@ -254,13 +255,13 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 37);
+            this.label1.Size = new System.Drawing.Size(80, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Azonosító";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.ClientSize = new System.Drawing.Size(1457, 801);
