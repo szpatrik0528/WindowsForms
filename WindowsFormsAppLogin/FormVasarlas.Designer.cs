@@ -142,6 +142,7 @@
             this.textBox_vegosszeg.ReadOnly = true;
             this.textBox_vegosszeg.Size = new System.Drawing.Size(123, 20);
             this.textBox_vegosszeg.TabIndex = 10;
+            this.textBox_vegosszeg.TextChanged += new System.EventHandler(this.textBox_vegosszeg_TextChanged);
             // 
             // FormVasarlas
             // 

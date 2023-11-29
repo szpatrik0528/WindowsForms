@@ -75,11 +75,25 @@ namespace WindowsFormsAppLogin
                 return;
             }
             Termek kivalasztottTermek = (Termek)listBox_termek.SelectedItem;
-            decimal osszesen = 0;
-            osszesen += kivalasztottTermek.ar * (decimal)numericUpDown_db.Value;
-            textBox_vegosszeg = osszesen.ToString();
+
             string kosarElem = $"{kivalasztottTermek.termeknev} - {kivalasztottTermek.db} - {kivalasztottTermek.ar} Ft/db";
             listBox_kosar.Items.Add(kosarElem);
+        }
+
+        private void textBox_vegosszeg_TextChanged(object sender, EventArgs e)
+        {
+            decimal total = 0;
+
+            foreach (var item in listBox_kosar.Items)
+            {
+                string[] parts = item.ToString().Split('-');
+                if (parts.Length >= 3)
+                {
+                    decimal price = decimal.Parse(parts[2].Trim().Replace("Ft/db", ""));
+                    total += price;
+                }
+            }
+            textBox_vegosszeg.Text = total.ToString("F2") + " Ft";
         }
     }
 }
