@@ -18,6 +18,8 @@ namespace WindowsFormsAppLogin
         MySqlConnection connection = null;
         MySqlCommand command = null;
 
+        public string kivalasztottTermek { get; private set; }
+
         public FormVasarlas()
         {
             InitializeComponent();
@@ -56,7 +58,28 @@ namespace WindowsFormsAppLogin
         }
         private void listBox_termek_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (listBox_termek.SelectedIndex < 0)
+            {
+                return;
+            }
+            Termek kivalasztottTermek = (Termek)listBox_termek.SelectedItem;
+            textBox_termeknev.Text = kivalasztottTermek.termeknev.ToString();
+            numericUpDown_ar.Value = (decimal)kivalasztottTermek.ar;
+            numericUpDown_db.Value = (decimal)kivalasztottTermek.db;
+        }
+
+        private void button_vasarlas_Click(object sender, EventArgs e)
+        {
+            if (listBox_termek.SelectedIndex < 0)
+            {
+                return;
+            }
+            Termek kivalasztottTermek = (Termek)listBox_termek.SelectedItem;
+            decimal osszesen = 0;
+            osszesen += kivalasztottTermek.ar * (decimal)numericUpDown_db.Value;
+            textBox_vegosszeg = osszesen.ToString();
+            string kosarElem = $"{kivalasztottTermek.termeknev} - {kivalasztottTermek.db} - {kivalasztottTermek.ar} Ft/db";
+            listBox_kosar.Items.Add(kosarElem);
         }
     }
 }
