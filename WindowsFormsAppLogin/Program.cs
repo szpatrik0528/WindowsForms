@@ -26,6 +26,7 @@ namespace WindowsFormsAppLogin
             command = connection.CreateCommand();
             try
             {
+                
                 connection.Open();
             }
             catch (MySqlException ex)

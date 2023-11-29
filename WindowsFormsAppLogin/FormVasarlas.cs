@@ -23,10 +23,6 @@ namespace WindowsFormsAppLogin
             InitializeComponent();
         }
 
-        private void listBox_termek_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
 
         private void FormVasarlas_Load(object sender, EventArgs e)
         {
@@ -57,6 +53,10 @@ namespace WindowsFormsAppLogin
                 MessageBox.Show(ex.Message, "bunko");
                 Environment.Exit(0);
             }
+        }
+        private void listBox_termek_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -30,10 +30,9 @@ namespace WindowsFormsAppLogin
                 string taroltJelszo = reader.GetString("jelszo");
                 if(taroltJelszo.Equals(textBox_pass.Text))
                 {
+                    reader.Close();
                     Program.formVasarlas.Show();
                     this.Hide();
-                    Program.connection.Close();
-                    reader.Close();
                 }
                 else
                 {
