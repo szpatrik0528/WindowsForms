@@ -13,14 +13,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsAppLogin
 {
-    public partial class FormVasarlas : Form
+    public partial class Form_kosarhoz : Form
     {
         MySqlConnection connection = null;
         MySqlCommand command = null;
 
         public string kivalasztottTermek { get; private set; }
 
-        public FormVasarlas()
+        public Form_kosarhoz()
         {
             InitializeComponent();
         }
@@ -68,32 +68,57 @@ namespace WindowsFormsAppLogin
             numericUpDown_db.Value = (decimal)kivalasztottTermek.db;
         }
 
-        private void button_vasarlas_Click(object sender, EventArgs e)
-        {
-            if (listBox_termek.SelectedIndex < 0)
-            {
-                return;
-            }
-            Termek kivalasztottTermek = (Termek)listBox_termek.SelectedItem;
-
-            string kosarElem = $"{kivalasztottTermek.termeknev} - {kivalasztottTermek.db} - {kivalasztottTermek.ar} Ft/db";
-            listBox_kosar.Items.Add(kosarElem);
-        }
-
         private void textBox_vegosszeg_TextChanged(object sender, EventArgs e)
         {
-            decimal total = 0;
+            decimal vegosszeg = 0;
 
-            foreach (var item in listBox_kosar.Items)
+            foreach (string kosarElem in listBox_kosar.Items)
             {
-                string[] parts = item.ToString().Split('-');
-                if (parts.Length >= 3)
+                int indexOfAr = kosarElem.LastIndexOf('-') + 1;
+                int indexOfFt = kosarElem.IndexOf("Ft");
+                string arSzoveg = kosarElem.Substring(indexOfAr, indexOfFt - indexOfAr).Trim();
+
+                if (decimal.TryParse(arSzoveg, out decimal ar))
                 {
-                    decimal price = decimal.Parse(parts[2].Trim().Replace("Ft/db", ""));
-                    total += price;
+                    vegosszeg += ar;
                 }
             }
-            textBox_vegosszeg.Text = total.ToString("F2") + " Ft";
+
+            textBox_vegosszeg.Text = vegosszeg.ToString("F"); 
+        }
+
+        private void textBox_db_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            listBox_kosar.Items.Clear();
+        }
+
+        private void listBox_kosar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SzamolVegosszeg();
+        }
+
+        private void SzamolVegosszeg()
+        {
+            decimal vegosszeg = 0;
+
+            foreach (string kosarElem in listBox_kosar.Items)
+            {
+                int indexOfAr = kosarElem.LastIndexOf('-') + 1;
+                int indexOfFt = kosarElem.IndexOf("Ft");
+                string arSzoveg = kosarElem.Substring(indexOfAr, indexOfFt - indexOfAr).Trim();
+
+                if (decimal.TryParse(arSzoveg, out decimal ar))
+                {
+                    vegosszeg += ar;
+                }
+            }
+
+            textBox_vegosszeg.Text = vegosszeg.ToString("F"); 
         }
     }
 }

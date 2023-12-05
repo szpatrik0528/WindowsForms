@@ -11,7 +11,7 @@ namespace WindowsFormsAppLogin
     internal static class Program
     {
         public static FormLogin formLogin = null;
-        public static FormVasarlas formVasarlas = null;
+        public static Form_kosarhoz formVasarlas = null;
         public static MySqlConnection connection = null;
         public static MySqlCommand command = null;
         static void Main()
@@ -38,7 +38,7 @@ namespace WindowsFormsAppLogin
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             formLogin = new FormLogin();
-            formVasarlas = new FormVasarlas();
+            formVasarlas = new Form_kosarhoz();
             Application.Run(formLogin);
         }
     }
